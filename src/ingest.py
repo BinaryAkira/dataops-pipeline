@@ -41,3 +41,35 @@ def fetch_pokemon(limit: int = 20) -> Dict[str, Any]:
     response.raise_for_status()
 
     return response.json()
+
+
+def save_raw(data: Dict[str, Any], filename: str = "pokemon_raw.json") -> Path:
+    """
+    Save raw JSON data to the data/raw directory.
+
+    Args:
+        data (Dict[str, Any]): JSON‑serialisable dictionary to save.
+        filename (str): Name of the output file.
+
+    Returns:
+        Path: Path to the saved JSON file.
+    """
+    path = RAW_DIR / filename
+
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+    return path
+
+def main() -> None:
+    """
+    Execute the ingestion step:
+    - fetch data from the API
+    - save it to disk
+    """
+    data = fetch_pokemon(limit=20)
+    path = save_raw(data)
+    print(f"Saved raw data to {path}")
+
+if __name__ == "__main__":
+    main()
