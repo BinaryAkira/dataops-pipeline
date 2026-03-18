@@ -8,6 +8,11 @@ import pandas as pd
 import pandera as pa
 from pandera import Check, Column, DataFrameSchema
 
+from logger import get_logger
+
+logger = get_logger(__name__)
+
+
 PROCESSED_PATH = Path("data/processed/pokemon_processed.csv")
 
 
@@ -33,9 +38,10 @@ def validate(df: pd.DataFrame) -> pd.DataFrame:
 
 def main() -> None:
     """Execute the validation step."""
+    logger.info("Starting validation step")
     df = load_processed()
     validate(df)
-    print("Validation successful — processed data is valid.")
+    logger.info("Validation successful — processed data is valid.")
 
 
 if __name__ == "__main__":

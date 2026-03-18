@@ -15,6 +15,11 @@ from typing import Any, Dict
 
 import requests
 
+from logger import get_logger
+
+logger = get_logger(__name__)
+
+
 # Establish directories for data
 RAW_DIR = Path("data/raw")
 RAW_DIR.mkdir(parents=True, exist_ok=True)
@@ -67,9 +72,10 @@ def main() -> None:
     - fetch data from the API
     - save it to disk
     """
+    logger.info("Starting ingestion step")
     data = fetch_pokemon(limit=20)
     path = save_raw(data)
-    print(f"Saved raw data to {path}")
+    logger.info(f"Ingestion complete: saved to {path}")
 
 
 if __name__ == "__main__":

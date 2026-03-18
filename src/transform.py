@@ -14,6 +14,11 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
+from logger import get_logger
+
+logger = get_logger(__name__)
+
+
 RAW_PATH = Path("data/raw/pokemon_raw.json")
 PROCESSED_DIR = Path("data/processed")
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -77,11 +82,12 @@ def main() -> None:
     - convert to DataFrame
     - save to processed/
     """
+    logger.info("Starting transformation step")
     raw = load_raw()
     records = extract_records(raw)
     df = pd.DataFrame(records)
     path = save_processed(df)
-    print(f"Saved processed data to {path}")
+    logger.info(f"Transformation complete: saved to {path}")
 
 
 if __name__ == "__main__":
