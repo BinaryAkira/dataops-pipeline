@@ -11,10 +11,9 @@ The output of this module is stored in data/raw/.
 
 import json
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
 
 import requests
-
 
 # Establish directories for data
 RAW_DIR = Path("data/raw")
@@ -61,6 +60,7 @@ def save_raw(data: Dict[str, Any], filename: str = "pokemon_raw.json") -> Path:
 
     return path
 
+
 def main() -> None:
     """
     Execute the ingestion step:
@@ -70,6 +70,7 @@ def main() -> None:
     data = fetch_pokemon(limit=20)
     path = save_raw(data)
     print(f"Saved raw data to {path}")
+
 
 if __name__ == "__main__":
     main()
