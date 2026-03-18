@@ -1,0 +1,6 @@
+requests
+pandas
+pandera
+python-dotenv
+pytest
+schedule
