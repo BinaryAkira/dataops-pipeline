@@ -67,6 +67,38 @@ Once activated, your terminal will show the environment name (e.g., `(pipeline-v
    python main.py
    ```
 
+## Testing: What, Why, and How
+
+### What Are Tests?
+Tests are small programs that check if your code works as expected. They help catch mistakes early and ensure your pipeline produces correct results.
+
+### Why Use Tests?
+- Find bugs before they affect your data
+- Make changes confidently, knowing tests will catch errors
+- Improve code quality and reliability
+
+### Where Are Tests?
+- The `tests/` folder contains test files for different parts of the pipeline.
+- Each test checks a specific function or module.
+
+### How to Run Tests
+1. Make sure your virtual environment is activated.
+2. Install test dependencies (already listed in `requirements.txt`, e.g., `pytest`):
+   ```
+   pip install -r requirements.txt
+   ```
+3. Run all tests with:
+   ```
+   pytest
+   ```
+
+### Best Practices: Project Structure
+- Keeping code organized in folders (`src/`, `tests/`, `data/`) makes it easier to maintain and scale.
+- Separating tests from main code helps you focus on development and quality independently.
+- Using a clear structure is a standard in professional projects and helps others understand your code quickly.
+
+By following these practices, your pipeline is easier to debug, extend, and share with others.
+
 ## Why Use a Pipeline?
 
 - Makes data processing repeatable and reliable.
