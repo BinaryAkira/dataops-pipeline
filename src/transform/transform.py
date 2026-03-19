@@ -1,11 +1,11 @@
 """
-Transformation module for converting raw Pokémon API data
-into a structured pandas DataFrame.
+Transformation module for converting raw Pokémon API data into a structured
+pandas DataFrame.
 
 This module:
-- loads raw JSON from data/raw/
-- extracts relevant fields
-- outputs a tidy table to data/processed/
+- Loads raw JSON from data/raw/
+- Extracts relevant fields from the API response
+- Outputs a tidy table to data/processed/
 """
 
 import json
@@ -14,10 +14,9 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from src.logger import get_logger
+from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
-
 
 RAW_PATH = Path("data/raw/pokemon_raw.json")
 PROCESSED_DIR = Path("data/processed")
@@ -26,13 +25,13 @@ PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 def load_raw(path: Path = RAW_PATH) -> Dict[str, Any]:
     """
-    Load raw JSON data from disk.
+    Load raw Pokémon JSON data from disk.
 
     Args:
         path (Path): Path to the raw JSON file.
 
     Returns:
-        Dict[str, Any]: Parsed JSON dictionary.
+        Dict[str, Any]: Parsed JSON dictionary containing the API response.
     """
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
@@ -40,13 +39,14 @@ def load_raw(path: Path = RAW_PATH) -> Dict[str, Any]:
 
 def extract_records(data: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    Extract a list of Pokémon records from the raw API response.
+    Extract simplified Pokémon records from the raw API response.
 
     Args:
-        data (Dict[str, Any]): Raw JSON dictionary.
+        data (Dict[str, Any]): Raw JSON dictionary loaded from disk.
 
     Returns:
-        List[Dict[str, Any]]: List of simplified Pokémon records.
+        List[Dict[str, Any]]: A list of dictionaries containing Pokémon names
+        and their corresponding API URLs.
     """
     results = data.get("results", [])
     return [
@@ -60,14 +60,14 @@ def extract_records(data: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def save_processed(df: pd.DataFrame, filename: str = "pokemon_processed.csv") -> Path:
     """
-    Save the processed DataFrame to CSV.
+    Save the processed Pokémon DataFrame to a CSV file.
 
     Args:
-        df (pd.DataFrame): DataFrame to save.
-        filename (str): Output filename.
+        df (pd.DataFrame): DataFrame containing cleaned Pokémon records.
+        filename (str): Name of the output CSV file.
 
     Returns:
-        Path: Path to the saved CSV file.
+        Path: Filesystem path to the saved CSV file.
     """
     path = PROCESSED_DIR / filename
     df.to_csv(path, index=False)
@@ -76,11 +76,13 @@ def save_processed(df: pd.DataFrame, filename: str = "pokemon_processed.csv") ->
 
 def main() -> None:
     """
-    Execute the transformation step:
-    - load raw JSON
-    - extract records
-    - convert to DataFrame
-    - save to processed/
+    Execute the transformation step.
+
+    This function:
+    - Loads raw JSON data from disk
+    - Extracts relevant Pokémon fields
+    - Converts the records into a pandas DataFrame
+    - Saves the processed dataset to data/processed/
     """
     logger.info("Starting transformation step")
     raw = load_raw()
