@@ -15,7 +15,7 @@ from typing import Any, Dict
 
 import requests
 
-from logger import get_logger
+from src.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -76,7 +76,3 @@ def main() -> None:
     data = fetch_pokemon(limit=20)
     path = save_raw(data)
     logger.info(f"Ingestion complete: saved to {path}")
-
-
-if __name__ == "__main__":
-    main()

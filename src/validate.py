@@ -8,7 +8,7 @@ import pandas as pd
 import pandera as pa
 from pandera import Check, Column, DataFrameSchema
 
-from logger import get_logger
+from src.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -42,7 +42,3 @@ def main() -> None:
     df = load_processed()
     validate(df)
     logger.info("Validation successful — processed data is valid.")
-
-
-if __name__ == "__main__":
-    main()

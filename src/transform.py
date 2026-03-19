@@ -14,7 +14,7 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from logger import get_logger
+from src.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -88,7 +88,3 @@ def main() -> None:
     df = pd.DataFrame(records)
     path = save_processed(df)
     logger.info(f"Transformation complete: saved to {path}")
-
-
-if __name__ == "__main__":
-    main()
