@@ -3,4 +3,3 @@ __pycache__/
 data/
 *.sqlite
 .env
-docstring_ref.txt
