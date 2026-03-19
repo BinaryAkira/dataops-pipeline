@@ -7,10 +7,10 @@ This module:
 - Handles top‑level logging and error reporting
 """
 
-from src.ingest.ingest import main as ingest_main
-from src.transform.transform import main as transform_main
+from src.ingest.ingest_main import run_ingest
+from src.transform.transform_main import run_transform
 from src.utils.logger import get_logger
-from src.validate.validate import main as validate_main
+from src.validate.validate_main import run_validate
 
 logger = get_logger(__name__)
 
@@ -30,9 +30,9 @@ def run_pipeline() -> None:
     logger.info("Pipeline run started")
 
     try:
-        ingest_main()
-        transform_main()
-        validate_main()
+        run_ingest()
+        run_transform()
+        run_validate()
         logger.info("Pipeline run completed successfully")
 
     except Exception as e:

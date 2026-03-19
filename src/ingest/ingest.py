@@ -15,10 +15,6 @@ from typing import Any, Dict
 
 import requests
 
-from src.utils.logger import get_logger
-
-logger = get_logger(__name__)
-
 # Establish directories for data
 RAW_DIR = Path("data/raw")
 RAW_DIR.mkdir(parents=True, exist_ok=True)
@@ -63,18 +59,3 @@ def save_raw(data: Dict[str, Any], filename: str = "pokemon_raw.json") -> Path:
         json.dump(data, f, indent=2)
 
     return path
-
-
-def main() -> None:
-    """
-    Execute the ingestion step.
-
-    This function:
-    - Fetches Pokémon data from the API
-    - Saves the raw JSON response to disk
-    - Logs progress and completion status
-    """
-    logger.info("Starting ingestion step")
-    data = fetch_pokemon(limit=20)
-    path = save_raw(data)
-    logger.info(f"Ingestion complete: saved to {path}")

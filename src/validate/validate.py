@@ -56,18 +56,3 @@ def validate(df: pd.DataFrame) -> pd.DataFrame:
         pandera.errors.SchemaError: If the DataFrame does not match the schema.
     """
     return pokemon_schema.validate(df)
-
-
-def main() -> None:
-    """
-    Execute the validation step.
-
-    This function:
-    - Loads the processed CSV file
-    - Validates it against the Pandera schema
-    - Logs the validation outcome
-    """
-    logger.info("Starting validation step")
-    df = load_processed()
-    validate(df)
-    logger.info("Validation successful — processed data is valid.")

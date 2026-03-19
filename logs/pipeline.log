@@ -20,3 +20,11 @@
 2026-03-19 15:27:12,718 - src.validate.validate - INFO - Starting validation step
 2026-03-19 15:27:12,756 - src.validate.validate - INFO - Validation successful — processed data is valid.
 2026-03-19 15:27:12,757 - src.pipeline - INFO - Pipeline run completed successfully
+2026-03-19 16:06:13,063 - src.pipeline - INFO - Pipeline run started
+2026-03-19 16:06:13,064 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-19 16:06:13,549 - src.ingest.ingest_main - INFO - Ingestion complete: saved to data\raw\pokemon_raw.json
+2026-03-19 16:06:13,550 - src.transform.transform_main - INFO - Starting transformation step
+2026-03-19 16:06:13,558 - src.transform.transform_main - INFO - Transformation complete: saved to data\processed\pokemon_processed.csv
+2026-03-19 16:06:13,559 - src.validate.validate_main - INFO - Starting validation step
+2026-03-19 16:06:13,599 - src.validate.validate_main - INFO - Validation successful — processed data is valid.
+2026-03-19 16:06:13,599 - src.pipeline - INFO - Pipeline run completed successfully
